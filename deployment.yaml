@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seleniumapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seleniumapp
+  template:
+    metadata:
+      labels:
+        app: seleniumapp
+    spec:
+      containers:
+      - name: seleniumapp
+        image: tanzila123/selenium:kubeimage1   # ✅ updated repo
+        ports:
+        - containerPort: 5000
