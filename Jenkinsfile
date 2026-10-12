@@ -2,23 +2,24 @@ pipeline {
     agent any
 
     stages {
-        stage('Run Selenium Tests with pytest') {
-            steps {
-                echo "Running Selenium Tests using pytest"
+      stage('Run Selenium Tests with pytest') {
+    steps {
+        echo "Running Selenium Tests using pytest"
 
-                // Install Python dependencies
-                bat 'python -m pip install -r requirements.txt'
+        // Install Python dependencies
+        bat 'python3 -m pip install -r requirements.txt'
 
-                // Start Flask app in background
-                bat 'start /B python3 app.py'
+        // Start Flask app in background
+        bat 'start /B python3 app.py'
 
-                // Wait for Flask to start
-                bat 'ping 127.0.0.1 -n 5 > nul'
+        // Wait for Flask to start
+        bat 'ping 127.0.0.1 -n 5 > nul'
 
-                // Run Selenium tests
-                bat 'python3 -m pytest -v'
-            }
-        }
+        // Run Selenium tests
+        bat 'python3 -m pytest -v'
+    }
+}
+
 
         stage('Build Docker Image') {
             steps {
