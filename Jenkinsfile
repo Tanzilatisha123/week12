@@ -10,13 +10,13 @@ pipeline {
                 bat 'python -m pip install -r requirements.txt'
 
                 // Start Flask app in background
-                bat 'start /B python app.py'
+                bat 'start /B python3 app.py'
 
                 // Wait for Flask to start
                 bat 'ping 127.0.0.1 -n 5 > nul'
 
                 // Run Selenium tests
-                bat 'python -m pytest -v'
+                bat 'python3 -m pytest -v'
             }
         }
 
